@@ -1,28 +1,36 @@
-# Node.js
+# Node.js dependencies
 node_modules/
+
+# Environment variables
 .env
+.env.*
+
+# Logs
 *.log
-.DS_Store
-*.sqlite
-*.db
-coverage/
-__pycache__/
-*.pyc
-.idea/
+
+# IDE and editor folders
 .vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Build and cache
 *.bak
 *.tmp
 *.swp
 *.swo
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-# OS
-Thumbs.db
-Desktop.ini
-$RECYCLE.BIN/
-# Sensitive files
+
+# Database files
+*.sqlite
+*.db
+
+# Coverage reports
+coverage/
+
+# Sensitive keys and certs
 *.key
 *.pem
 *.crt
@@ -31,5 +39,7 @@ $RECYCLE.BIN/
 *.pfx
 *.secret
 *.token
-*.config.js
-*.config.json
+
+# Python cache (if any)
+__pycache__/
+*.pyc
