@@ -22,14 +22,17 @@ async function embedText(text) {
   return response.data.data[0].embedding;
 }
 
-async function storeEmbeddings(chunks) {
-  await client.del('doc_chunks');
+// Store embeddings per documentId
+async function storeEmbeddings(documentId, chunks) {
+  await client.del(`doc_chunks:${documentId}`);
   for (let i = 0; i < chunks.length; i++) {
     const embedding = await embedText(chunks[i]);
-    await client.hSet(`doc_chunks:${i}`, {
-      chunk: chunks[i],
-      vector: JSON.stringify(embedding),
-    });
+    await client.hSet(`doc_chunks:${documentId}:${i}`,
+      {
+        chunk: chunks[i],
+        vector: JSON.stringify(embedding),
+      }
+    );
   }
 }
 
@@ -40,9 +43,10 @@ function cosineSimilarity(vecA, vecB) {
   return dot / (magA * magB);
 }
 
-async function queryTopK(question, topK = 3) {
+// Query top K chunks for a documentId
+async function queryTopK(documentId, question, topK = 3) {
   const questionVec = await embedText(question);
-  const keys = await client.keys('doc_chunks:*');
+  const keys = await client.keys(`doc_chunks:${documentId}:*`);
 
   const similarities = [];
   for (const key of keys) {
