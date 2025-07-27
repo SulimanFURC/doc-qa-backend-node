@@ -1,0 +1,35 @@
+# Node.js
+node_modules/
+.env
+*.log
+.DS_Store
+*.sqlite
+*.db
+coverage/
+__pycache__/
+*.pyc
+.idea/
+.vscode/
+*.bak
+*.tmp
+*.swp
+*.swo
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+# OS
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+# Sensitive files
+*.key
+*.pem
+*.crt
+*.p12
+*.jks
+*.pfx
+*.secret
+*.token
+*.config.js
+*.config.json
